@@ -1,0 +1,76 @@
+<cycles>
+
+<!-- Camera --> 
+<camera width="1878" height="852" />
+
+<transform translate="0 2 -6" scale="1 1 1" rotate="20 1 0 0">
+	 <camera type="perspective"/>
+</transform>
+
+<background>
+	<texture_coordinate name="texcoord" />
+	<brick_texture name="bricktex" scale="2.0" color1="0.8, 0.8, 0.8" color2="1.0, 0.2, 0.2" />
+	<background name="bg" strength="1.0" color="0.2, 0.2, 0.2" />
+	<connect from="texcoord camera" to="bricktex vector" />
+	<connect from="bricktex color" to="bg color" />
+	<connect from="bg background" to="output surface" />
+</background>
+
+<shader name="magictexture">
+		<magic_texture name="magic" depth="4" />
+		<diffuse_bsdf name="m_diffuse_bsdf" color="0.25490 0.53725 0.23922" />
+
+		<connect from="magic color" to="m_diffuse_bsdf color" />
+		<connect from="m_diffuse_bsdf bsdf" to="output surface" />
+</shader>
+
+<transform matrix="1.0 0.0 0.0 0.0  0.0 1.0 0.0 0.0  0.0 0.0 1.0 0.0  0.0 0.0 0.0 1.0 ">
+	<state shader="texcube">
+	<mesh P="
+ 		0.2600 0.4207 0.0000  
+		0.0000 0.0000 0.0000  
+		0.0000 0.4207 0.0000  
+		0.2600 0.0000 0.0000  
+		0.2600 0.0000 0.0900  
+		0.0000 0.4207 0.0900  
+		0.0000 0.0000 0.0900  
+		0.2600 0.4207 0.0900  
+		0.0000 0.4207 0.0900  	
+		0.0000 0.0000 0.0000  
+		0.0000 0.0000 0.0900  
+		0.0000 0.4207 0.0000  
+		0.0000 0.4207 0.0900  
+		0.2600 0.4207 0.0000  
+		0.0000 0.4207 0.0000  
+		0.2600 0.4207 0.0900  
+		0.2600 0.4207 0.0000  
+		0.2600 0.0000 0.0900  
+		0.2600 0.0000 0.0000  
+		0.2600 0.4207 0.0900  
+		0.2600 0.0000 0.0900  
+		0.0000 0.0000 0.0000  
+		0.2600 0.0000 0.0000  
+		0.0000 0.0000 0.0900 " 
+
+	nverts=" 3 3 3 
+		 3 3 3 
+		 3 3 3 
+		 3 3 3 " 
+
+	verts=" 
+		0 1 2  
+		1 0 3  
+		4 5 6  
+		5 4 7  
+		8 9 10  
+		9 8 11  
+		12 13 14  
+		13 12 15  
+		16 17 18  
+		17 16 19  
+		20 21 22  
+		21 20 23 " />
+	</state>
+</transform>
+
+</cycles>
